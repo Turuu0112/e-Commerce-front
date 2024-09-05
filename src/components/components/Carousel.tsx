@@ -1,8 +1,11 @@
 "use client";
+import Image from "next/image";
 import { title } from "process";
 import { useState } from "react";
 const slides = [
-  { title: "Slide 1" },
+  { title: "Slide ",
+    image: "/Hoodie.png",
+   },
   { title: "Slide 2" },
   { title: "Slide 3" },
 ];
@@ -36,12 +39,18 @@ export const Carousel = () => {
 };
 type SlideProps = {
   title?: string;
+  image: string;
+ 
 };
-const Slide = ({ title }: SlideProps) => {
+const Slide = ({ title,image }: SlideProps) => {
   return (
-    <div className="flex-1 h-full flex justify-center items-center">
+    <div className="flex-1 h-full flex justify-center items-center relative">
       {title}
+      <div className="absolute w-[100%] h-[100%] top-0 left-0 flex justify-center items-center">
+      <Image src={image} alt={title} width={500} height={500} />
     </div>
+    </div>
+    
   );
 };
 type IndicatorProps = {
