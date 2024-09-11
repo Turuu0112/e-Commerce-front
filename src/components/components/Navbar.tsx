@@ -2,14 +2,19 @@ import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Button } from "../ui/button";
+import Link from "next/link";
+
 
 export const Navbar = () => {
   return (
     <div className="w-screen h-[68px] bg-black top-0 items-center flex gap-2 justify-between">
       <div className="pl-8 flex gap-2">
-        <Image src="/Logo.png" alt="logo" width={32} height={32} />
-        <div>
-          <p className="text-white">Бүтээгдэхүүн</p>
+        <Image src="/Symbol.png" alt="logo" width={32} height={32} />
+        <div className="flex gap-8">
+          <Link href="/"><p className="text-white">Ecommerce</p></Link>
+          <Link href="/category">
+            <p className="text-white">Ангилал</p>
+          </Link>
         </div>
       </div>
 
@@ -23,7 +28,7 @@ export const Navbar = () => {
 
       <div className="flex justify-center gap-4 ">
         <div className=" flex gap-4  text-white items-center  ]">
-          <CiHeart size={24}/>
+          <Link href="/favorite"><CiHeart size={24} /></Link>
           <MdOutlineShoppingCart size={24} />
         </div>
         <div className="flex gap-2 pr-6">
