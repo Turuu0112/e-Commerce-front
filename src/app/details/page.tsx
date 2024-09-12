@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
+import App from "next/app";
 import Image from "next/image";
+import { CiHeart } from "react-icons/ci";
 
 const Smallimg = [
   {
@@ -36,7 +38,7 @@ export default function Details() {
   return (
     <div className="ml-[200px] mt-[52px]">
       <div className="flex gap-5">
-        <div className="flex flex-col gap-1 pt-[95.5px] ">
+        <div className=" gap-1 pt-[95.5px] grid grid-cols-1   ">
           {Smallimg.map((slide, index) => (
             <Zurag key={index} image={slide.image} />
           ))}
@@ -52,7 +54,12 @@ export default function Details() {
           />
         </div>
         <div className="flex flex-col gap-4">
-          <h1>Wildflower Hoodie</h1>
+          <Button className="w-[52px] h-[20px] rounded-full bg-transparent text-black p-1 border-blue-600 ">
+            шинэ
+          </Button>
+          <span className="flex items-center text-[24px] font-bold">
+            Wildflower Hoodie <CiHeart size={25} />
+          </span>
           <p>Зэрлэг цэцгийн зурагтай даавуун материалтай цамц</p>
           <p>Хэмжээний заавар</p>
           <div className="flex gap-2">
@@ -64,10 +71,11 @@ export default function Details() {
               </div>
             ))}
           </div>
+          <App />
 
-          <h1>120,000��</h1>
-          <button className="bg-blue-500 text-white px-10 py-3 rounded-xl hover:bg-blue-400">
-            Add to Cart
+          <h1>120'000</h1>
+          <button className="bg-blue-500 text-white  rounded-full hover:bg-blue-400 w-[175px] h-[36px]">
+            Сагсанд нэмэх
           </button>
         </div>
       </div>

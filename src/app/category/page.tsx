@@ -12,7 +12,6 @@ const Product = [
 export default function Categories() {
   return (
     <div>
-      <Navbar />
       <div className="flex mt-[52px]">
         <div>
           <Category />
@@ -20,7 +19,6 @@ export default function Categories() {
         </div>
         <Cates />
       </div>
-      <Footer />
     </div>
   );
 }
