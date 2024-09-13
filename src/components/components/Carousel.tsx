@@ -1,6 +1,7 @@
 "use client";
 import { Fullscreen } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { title } from "process";
 import { useState } from "react";
 const slides = [
@@ -14,22 +15,24 @@ export const Carousel = () => {
   return (
     <div className="w-full h-full px-[200px] ">
       <div className="w-full h-[800px] overflow-hidden border relative border-cyan-800 bg-green-200 mt-16 rounded-3xl ">
-        <div
-          className="w-[300%] h-full flex [&>div]:text-5xl"
-          style={{
-            transform: `translateX(-${(slideIndex * 100) / slides.length}%)`,
-            transition: "transform 0.5s ease",
-          }}
-        >
-          {slides.map((slide, index) => (
-            <Slide
-              key={index}
-              title={slide.title}
-              image={slide.image}
-              price={slide.price}
-            />
-          ))}
-        </div>
+        <Link href="/details">
+          <div
+            className="w-[300%] h-full flex [&>div]:text-5xl"
+            style={{
+              transform: `translateX(-${(slideIndex * 100) / slides.length}%)`,
+              transition: "transform 0.5s ease",
+            }}
+          >
+            {slides.map((slide, index) => (
+              <Slide
+                key={index}
+                title={slide.title}
+                image={slide.image}
+                price={slide.price}
+              />
+            ))}
+          </div>
+        </Link>
         <div className="absolute flex gap-4 bottom-4 left-[calc(50%-52px)]">
           {slides.map((_, index) => (
             <Indicator

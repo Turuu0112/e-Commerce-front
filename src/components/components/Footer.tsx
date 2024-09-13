@@ -9,7 +9,7 @@ import { FaRegCopyright } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <div className="w-screen h-[282px] bg-black flex justify-center items-center px-[200px] mt-[100px]">
+    <div className="w-screen h-[282px] bg-black flex justify-center items-center px-[200px] mb-0 ">
       <div className="w-full ">
         <div className="w-full flex justify-between">
           <Image src="/Symbol.png" width={50} height={50} alt="image"></Image>

@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
-import App from "next/app";
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
+import { Badge } from "@/components/ui/badge";
+import Counter from "@/components/components/counter";
+import { Bold } from "lucide-react";
 
 const Smallimg = [
   {
@@ -53,10 +55,11 @@ export default function Details() {
           h-[641px] object-cover rounded-xl"
           />
         </div>
-        <div className="flex flex-col gap-4">
-          <Button className="w-[52px] h-[20px] rounded-full bg-transparent text-black p-1 border-blue-600 ">
-            шинэ
-          </Button>
+        <div className="flex flex-col gap-4 justify-center">
+          <Badge variant="outline" className="w-[52px] h-5 rounded-full">
+            Шинэ
+          </Badge>
+
           <span className="flex items-center text-[24px] font-bold">
             Wildflower Hoodie <CiHeart size={25} />
           </span>
@@ -71,12 +74,16 @@ export default function Details() {
               </div>
             ))}
           </div>
-          <App />
+          <Counter/>
 
-          <h1>120'000</h1>
+          <h1 className="font-bold">120'000₮</h1>
           <button className="bg-blue-500 text-white  rounded-full hover:bg-blue-400 w-[175px] h-[36px]">
             Сагсанд нэмэх
           </button>
+          <div className="flex gap-4 mt-[55px]">
+            <span>Үнэлгээ</span>
+            <span className="border-b text-blue-600">бүгдийг харах</span>
+          </div>
         </div>
       </div>
     </div>

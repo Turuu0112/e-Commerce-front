@@ -20,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {children}
+        <div style={{ minHeight: "calc(100vh - 275px - 74px)" }}>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
