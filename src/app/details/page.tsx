@@ -74,7 +74,7 @@ export default function Details() {
             ))}
           </div>
           <Counter />
-          <h1 className="font-bold">120'000</h1>
+          <h1 className="font-bold">120&apos;000</h1>
           <button className="bg-blue-500 text-white  rounded-full hover:bg-blue-400 w-[175px] h-[36px]">
             Сагсанд нэмэх
           </button>
