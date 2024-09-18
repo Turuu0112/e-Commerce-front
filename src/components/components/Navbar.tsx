@@ -3,6 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { CiUser } from "react-icons/ci";
 
 export const Navbar = () => {
   return (
@@ -29,10 +30,15 @@ export const Navbar = () => {
 
       <div className="flex justify-center gap-4 ">
         <div className=" flex gap-4  text-white items-center  ]">
-          <Link href="/favorite">
+          <Link href="/save">
             <CiHeart size={24} />
           </Link>
-          <MdOutlineShoppingCart size={24} />
+          <Link href="/sags">
+            <MdOutlineShoppingCart size={24} />
+          </Link>
+          <Link href="/profile">
+            <CiUser size={24} />
+          </Link>
         </div>
         <div className="flex gap-2 pr-6">
           <Link href="/register">

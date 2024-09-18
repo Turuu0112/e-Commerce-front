@@ -21,6 +21,9 @@ const Products = [
   },
 ];
 export const Category = () => {
+  const sortedProducts = [...Products].sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
   return (
     <div className="ml-[200px]">
       <h1>Ангилал</h1>
@@ -59,6 +62,10 @@ const Product = [
   },
 ];
 export const Categor = () => {
+  const sortedProducts = [...Product].sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+
   return (
     <div className="ml-[200px] mt-[48px]">
       <h1>Ангилал</h1>

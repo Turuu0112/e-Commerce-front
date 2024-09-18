@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/components/Navbar";
 import { Footer } from "@/components/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <div style={{ minHeight: "calc(100vh - 275px - 74px)" }}>
           {children}
         </div>
+        <Toaster />
         <Footer />
       </body>
     </html>

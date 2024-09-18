@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { CiHeart } from "react-icons/ci";
 
 const product = [
   {
@@ -123,6 +124,9 @@ const Productcard = ({ description, price, image }: Prductcardprops) => {
   return (
     <Link href="/details">
       <div className="h-full w-full ">
+        <div className="absolute p-3 ">
+          <CiHeart size={24} />
+        </div>
         <Image
           src={image}
           alt={description}

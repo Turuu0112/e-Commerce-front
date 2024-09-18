@@ -20,8 +20,8 @@ export default function Page() {
           <li>Тэмдэгт орсон байх</li>
         </div>
         <Button className="w-[334px] h-[36px] bg-blue-600 rounded-full mt-4 ">
-            Үүсгэх
-          </Button>
+          Үүсгэх
+        </Button>
       </div>
     </div>
   );
