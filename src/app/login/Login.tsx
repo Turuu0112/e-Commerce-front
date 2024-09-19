@@ -1,6 +1,7 @@
 "use cleint";
 
-import { useAuth } from "@/components/components/providers/Autoprovider";
+
+import { useAuth } from "@/components/components/Autoprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,7 +12,7 @@ type LoginComponent = {
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login} = useAuth();
 
 
   const handleLogin = async (e: React.FormEvent) => {

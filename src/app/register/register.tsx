@@ -1,5 +1,6 @@
-"use client"
-import { useAuth } from "@/components/components/providers/Autoprovider";
+"use client";
+
+import { useAuth } from "@/components/components/Autoprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,7 +13,7 @@ export const Register = () => {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Call your API to register
+
     const response = await fetch("/api/register", {
       method: "POST",
       headers: {
@@ -22,10 +23,8 @@ export const Register = () => {
     });
 
     if (response.ok) {
-      // Handle successful registration
       console.log("Registered!");
     } else {
-      // Handle registration error
       console.error("Registration failed");
     }
   };
@@ -72,7 +71,7 @@ export const Register = () => {
         <div className="flex flex-col gap-12 mt-4">
           <Button
             type="submit"
-            onClick={() => register(email, password,name)}
+            onClick={() => register(email, password, name)}
             className="w-[334px] h-[36px] bg-blue-600 rounded-full "
           >
             Үүсгэх
