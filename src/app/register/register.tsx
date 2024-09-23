@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/components/components/Autoprovider";
+import { useAuth } from "@/components/components/Authprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,25 +9,9 @@ export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  console.log(name, email, password);
   const { register } = useAuth();
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password, name }),
-    });
-
-    if (response.ok) {
-      console.log("Registered!");
-    } else {
-      console.error("Registration failed");
-    }
-  };
   return (
     <div className="w-full h-screen flex  flex-col items-center bg-[#F7F7F8]">
       <div className="mt-[108px]">
@@ -71,7 +55,7 @@ export const Register = () => {
         <div className="flex flex-col gap-12 mt-4">
           <Button
             type="submit"
-            onClick={() => register(email, password, name)}
+            onClick={() => register(name, password, email)}
             className="w-[334px] h-[36px] bg-blue-600 rounded-full "
           >
             Үүсгэх

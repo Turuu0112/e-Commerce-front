@@ -1,9 +1,7 @@
-"use client"
+"use client";
 
 import { Register } from "./register";
 
-export default function Page(){
-  return(
-    <Register/>
-  )
+export default function Page() {
+  return <Register />;
 }

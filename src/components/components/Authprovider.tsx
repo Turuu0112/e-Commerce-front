@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { toast } from "sonner";
-import Cookies from "js-cookie";
+
 
 interface User {
   _id: string;
@@ -32,7 +32,7 @@ interface AuthContextType {
 }
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-const authPaths = ["/save", "/buy"];
+const authPaths = ["/login", "/register"];
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const login = async (email: string, password: string) => {
     try {
       const res = await api.post("/auth/login", { email, password });
-    //   Cookies.set("token", res.data.token);
+      // Cookies.set("token", res.data.token);
       setUser(res.data.user);
       toast.success(res.data.message);
       router.replace("/");
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const register = async (name: string, email: string, password: string) => {
     try {
       const res = await api.post("/author/register", { name, email, password });
-    //   Cookies.set("token", res.data.token);
+      // Cookies.set("token", res.data.token);
       setUser(res.data.user);
       toast.success(res.data.message);
       router.push("/");
@@ -154,10 +154,4 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export const useAuth = () => useContext(AuthContext);
