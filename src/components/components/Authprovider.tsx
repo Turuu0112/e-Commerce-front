@@ -11,7 +11,6 @@ import {
 } from "react";
 import { toast } from "sonner";
 
-
 interface User {
   _id: string;
   email: string;
@@ -27,12 +26,12 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
-  forgotPassword: (email: string) => Promise<void>;
-  logout: () => Promise<void>;
+  // forgotPassword: (email: string) => Promise<void>;
+  // logout: () => Promise<void>;
 }
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-const authPaths = ["/login", "/register"];
+const authPaths = ["", "/register"];
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -43,7 +42,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const login = async (email: string, password: string) => {
     try {
       const res = await api.post("/auth/login", { email, password });
-      // Cookies.set("token", res.data.token);
       setUser(res.data.user);
       toast.success(res.data.message);
       router.replace("/");
@@ -57,9 +55,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
   const register = async (name: string, email: string, password: string) => {
+    console.log("register ajillaa");
+
     try {
-      const res = await api.post("/author/register", { name, email, password });
-      // Cookies.set("token", res.data.token);
+      const res = await api.post("/auth/register", { name, email, password });
       setUser(res.data.user);
       toast.success(res.data.message);
       router.push("/");
@@ -71,55 +70,16 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         toast.error("An unknown error occurred.");
       }
     }
+    console.log("Registering:", name, password, email);
   };
-  const forgotPassword = async (email: string) => {
-    try {
-      const res = await api.post("/auth/forgot-password", { email });
-      toast.success(res.data.message);
-    } catch (err: unknown) {
-      console.log(err);
-      if (err instanceof AxiosError) {
-        toast.error(
-          err.response?.data?.message || "Failed to send password reset link"
-        );
-      } else {
-        toast.error("An unknown error occurred");
-      }
-    }
-  };
-  const logout = async () => {
-    try {
-      const res = await api.post("/auth/logout");
-    //   Cookies.remove("token");
-      setUser({} as User);
-      toast.success(res.data.message);
-    } catch (err: unknown) {
-      console.log(err);
-      if (err instanceof AxiosError) {
-        toast.error(err.response?.data?.message || "Failed to logout");
-      } else {
-        toast.error("An unknown error occurred");
-      }
-    }
-  };
+
   useEffect(() => {
     const loadUser = async () => {
       try {
         setIsReady(false);
-
-        // // const token = Cookies.get("token");
-        // if (!token) return;
-
-        // const res = await api.get("/auth/check-auth", {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        // });
-
-        // setUser(res.data.user);
       } catch (err: unknown) {
         console.log(err);
-        // Cookies.remove("token");
+
         if (err instanceof AxiosError) {
           toast.error(
             err.response?.data?.message ||
@@ -134,6 +94,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     };
 
     loadUser();
+    console.log(typeof register);
   }, []);
 
   useEffect(() => {
@@ -146,9 +107,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   if (!isReady) return null;
   return (
-    <AuthContext.Provider
-      value={{ user, login, register, forgotPassword, logout }}
-    >
+    <AuthContext.Provider value={{ user, login, register }}>
       {children}
     </AuthContext.Provider>
   );

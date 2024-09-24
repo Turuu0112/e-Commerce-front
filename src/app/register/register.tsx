@@ -12,6 +12,22 @@ export const Register = () => {
   console.log(name, email, password);
   const { register } = useAuth();
 
+  const [passwordChecks, setPasswordChecks] = useState({
+    hasUppercase: false,
+    hasLowercase: false,
+    hasNumber: false,
+    hasSpecialChar: false,
+  });
+
+  const validatePassword = (password: string) => {
+    setPasswordChecks({
+      hasUppercase: /[A-Z]/.test(password),
+      hasLowercase: /[a-z]/.test(password),
+      hasNumber: /[0-9]/.test(password),
+      hasSpecialChar: /[@$!%*?&#,.]/.test(password),
+    });
+  };
+
   return (
     <div className="w-full h-screen flex  flex-col items-center bg-[#F7F7F8]">
       <div className="mt-[108px]">
@@ -55,7 +71,8 @@ export const Register = () => {
         <div className="flex flex-col gap-12 mt-4">
           <Button
             type="submit"
-            onClick={() => register(name, password, email)}
+            // onClick={() => console.log("helloo")}
+            onClick={() => register(name, email, password)}
             className="w-[334px] h-[36px] bg-blue-600 rounded-full "
           >
             Үүсгэх

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "../components/components/Navbar";
 import { Footer } from "@/components/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/components/components/Authprovider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <div style={{ minHeight: "calc(100vh - 275px - 74px)" }}>
-          {children}
-        </div>
-        <Toaster />
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <div style={{ minHeight: "calc(100vh - 275px - 74px)" }}>
+            {children}
+          </div>
+          <Toaster />
+          
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
