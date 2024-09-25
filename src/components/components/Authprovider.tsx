@@ -15,12 +15,13 @@ interface User {
   _id: string;
   email: string;
   name: string;
-  isVerified: boolean;
+  isVerified: string | boolean;
   lastLogin: string;
   createdAt: string;
   updatedAt: string;
   resetPasswordToken?: string;
   __v: number;
+  password: string;
 }
 interface AuthContextType {
   user: User | null;
@@ -31,7 +32,7 @@ interface AuthContextType {
 }
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-const authPaths = ["", "/register"];
+const authPaths = ["", ""];
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();

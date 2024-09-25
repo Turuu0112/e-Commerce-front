@@ -1,6 +1,5 @@
 "use cleint";
 
-
 import { useAuth } from "@/components/components/Authprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -12,8 +11,7 @@ type LoginComponent = {
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login} = useAuth();
-
+  const { login } = useAuth();
 
   // const handleLogin = async (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -57,6 +55,7 @@ export const Login = () => {
         <Link href="/forgetpass">
           <p className="border-b text-gray-500">Нууц үг мартсан</p>
         </Link>
+
         <Button
           onClick={() => login(email, password)}
           className="w-[334px] h-[36px] bg-white text-blue-600 rounded-full "
