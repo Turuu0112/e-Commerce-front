@@ -78,9 +78,20 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const loadUser = async () => {
       try {
         setIsReady(false);
+
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const res = await api.get("/auth/check-auth", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUser(res.data.user);
       } catch (err: unknown) {
         console.log(err);
-
+        localStorage.remove("token");
         if (err instanceof AxiosError) {
           toast.error(
             err.response?.data?.message ||
@@ -95,7 +106,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     };
 
     loadUser();
-    console.log(typeof register);
   }, []);
 
   useEffect(() => {
