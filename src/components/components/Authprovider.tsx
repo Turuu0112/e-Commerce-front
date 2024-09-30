@@ -27,12 +27,12 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
-  // forgotPassword: (email: string) => Promise<void>;
-  // logout: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
+  logout: () => Promise<void>;
 }
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-const authPaths = ["", ""];
+const authPaths = ["/login", "register"];
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -71,8 +71,40 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         toast.error("An unknown error occurred.");
       }
     }
-    console.log("Registering:", name, password, email);
   };
+  const forgotPassword = async (email: string) => {
+    try {
+        const res = await api.post("/auth/forgot-password", { email })
+        toast.success(res.data.message);
+    } catch (err: unknown) {
+        console.log(err)
+        if (err instanceof AxiosError) {
+            toast.error(err.response?.data?.message || "Failed to send password reset link")
+        } else {
+            toast.error("An unknown error occurred")
+        }
+    }
+}
+const logout = async () => {
+  try {
+      const res = await api.post("/auth/logout");
+      
+      
+      localStorage.removeItem("token");
+      
+
+      setUser({} as User);
+      
+      toast.success(res.data.message);
+  } catch (err: unknown) {
+      console.log(err);
+      if (err instanceof AxiosError) {
+          toast.error(err.response?.data?.message || "Failed to logout");
+      } else {
+          toast.error("An unknown error occurred");
+      }
+  }
+};
 
   useEffect(() => {
     const loadUser = async () => {
@@ -118,7 +150,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   if (!isReady) return null;
   return (
-    <AuthContext.Provider value={{ user, login, register }}>
+    <AuthContext.Provider value={{ user, login, register,logout,forgotPassword }}>
       {children}
     </AuthContext.Provider>
   );
