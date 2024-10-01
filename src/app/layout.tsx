@@ -5,8 +5,9 @@ import { Navbar } from "../components/components/Navbar";
 import { Footer } from "@/components/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/components/components/Authprovider";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PropsWithChildren } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: PropsWithChildren<{
   children: React.ReactNode;
 }>) {
   return (

@@ -8,6 +8,6 @@ export default function Home() {
     <div>
       <Carousel />
       <Products />
-    </div>
+      </div>
   );
 }

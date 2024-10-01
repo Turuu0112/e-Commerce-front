@@ -11,6 +11,12 @@ import {
 } from "react";
 import { toast } from "sonner";
 
+interface AuthUser {
+  user: User | null;
+  isAuthenticated: boolean;
+  role?: string; // Add role here
+}
+
 interface User {
   _id: string;
   email: string;
@@ -42,19 +48,28 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [isReady, setIsReady] = useState<boolean>(false);
   const login = async (email: string, password: string) => {
     try {
-      const res = await api.post("/auth/login", { email, password });
-      setUser(res.data.user);
-      toast.success(res.data.message);
-      router.replace("/");
-    } catch (err: unknown) {
-      console.log(err);
-      if (err instanceof AxiosError) {
-        toast.error(err.response?.data?.message || "Login failed.");
-      } else {
-        toast.error("An unknown error occurred.");
-      }
+      const response = await api.post("/auth/login", { email, password });
+      const { token, user } = response.data;
+
+      setUser({
+        //+
+        ...user, // Spread the existing user object//+
+        isAuthenticated: true, //+
+        role: user.role, // Save the role//+
+      }); //+
+
+      // Redirect based on role
+      const redirectPath = user.role === "admin" ? "/admin" : "/";
+      router.push(redirectPath);
+      toast.success("Нэвтрэлт амжилттай!");
+
+      localStorage.setItem("token", token);
+    } catch (error) {
+      toast.error("Нууц үг эсвэл майл буруу байна!");
+      console.error("Нэвтрэх алдаа:", error);
     }
   };
+
   const register = async (name: string, email: string, password: string) => {
     console.log("register ajillaa");
 
@@ -74,37 +89,34 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
   const forgotPassword = async (email: string) => {
     try {
-        const res = await api.post("/auth/forgot-password", { email })
-        toast.success(res.data.message);
-    } catch (err: unknown) {
-        console.log(err)
-        if (err instanceof AxiosError) {
-            toast.error(err.response?.data?.message || "Failed to send password reset link")
-        } else {
-            toast.error("An unknown error occurred")
-        }
-    }
-}
-const logout = async () => {
-  try {
-      const res = await api.post("/auth/logout");
-      
-      
-      localStorage.removeItem("token");
-      
-
-      setUser({} as User);
-      
+      const res = await api.post("/auth/forgot-password", { email });
       toast.success(res.data.message);
-  } catch (err: unknown) {
+    } catch (err: unknown) {
       console.log(err);
       if (err instanceof AxiosError) {
-          toast.error(err.response?.data?.message || "Failed to logout");
+        toast.error(
+          err.response?.data?.message || "Failed to send password reset link"
+        );
       } else {
-          toast.error("An unknown error occurred");
+        toast.error("An unknown error occurred");
       }
-  }
-};
+    }
+  };
+  const logout = async () => {
+    try {
+      const res = await api.post("/auth/logout");
+      localStorage.removeItem("token");
+      setUser({} as User);
+      toast.success(res.data.message);
+    } catch (err: unknown) {
+      console.log(err);
+      if (err instanceof AxiosError) {
+        toast.error(err.response?.data?.message || "Failed to logout");
+      } else {
+        toast.error("An unknown error occurred");
+      }
+    }
+  };
 
   useEffect(() => {
     const loadUser = async () => {
@@ -150,7 +162,9 @@ const logout = async () => {
 
   if (!isReady) return null;
   return (
-    <AuthContext.Provider value={{ user, login, register,logout,forgotPassword }}>
+    <AuthContext.Provider
+      value={{ user, login, register, logout, forgotPassword }}
+    >
       {children}
     </AuthContext.Provider>
   );
