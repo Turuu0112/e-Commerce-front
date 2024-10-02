@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {  useAuth,  } from "../Authprovider";
+import { useAuth } from "../Authprovider";
 
 const UserInfo = () => {
   const pathname: string = usePathname();
@@ -25,7 +25,7 @@ const UserInfo = () => {
   const { logout } = useAuth();
 
   return (
-    <div className="flex justify-center bg-[#F7F7F8]">
+    <div className="flex justify-center bg-[#F7F7F8] w-full ">
       <div className="container justify-center h-screen flex gap-5 my-32 ">
         <div className="grid flex-1 h-fit">
           {paths.map((path, index) => (
@@ -91,14 +91,14 @@ const UserInfo = () => {
               />
             </div>
             <div className="w-full flex justify-between ">
-              <button
-                onClick={logout}
-                className="border border-red-500  rounded-2xl text-red-500 hover:bg-red-600 duration-700 hover:text-white"
-              >
-                <p className="px-9 py-2">Систэмээс гарах</p>
-              </button>
               <button className="border border-[#2563EB] text-[#2563EB] rounded-2xl hover:bg-[#2563EB] hover:text-white duration-1000">
                 <p className="px-9 py-2 ">Мэдээлэл шинэчлэх</p>
+              </button>
+              <button
+                className="border border-[#2563EB] text-[#2563EB] rounded-2xl hover:bg-[#2563EB] hover:text-white duration-1000"
+                onClick={logout}
+              >
+                <p className="px-9 py-2 ">Log out</p>
               </button>
             </div>
           </div>

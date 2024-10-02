@@ -4,31 +4,11 @@ import { useAuth } from "@/components/components/Authprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
-type LoginComponent = {
-  email: string;
-  password?: string;
-};
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
-  // const handleLogin = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const response = await fetch("/api/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ email, password }),
-  //   });
-
-  //   if (response.ok) {
-  //     console.log("Logged in!");
-  //   } else {
-  //     console.error("Login failed");
-  //   }
-  // };
   return (
     <div className="w-screen h-screen flex flex-col bg-[#F7F7F8] items-center pt-[108px]">
       <h1>Нэвтрэх</h1>

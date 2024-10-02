@@ -38,7 +38,7 @@ interface AuthContextType {
 }
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-const authPaths = ["/login", "register"];
+const authPaths = ["/login", "/register"];
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -50,15 +50,11 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     try {
       const response = await api.post("/auth/login", { email, password });
       const { token, user } = response.data;
-
       setUser({
-        //+
-        ...user, // Spread the existing user object//+
-        isAuthenticated: true, //+
-        role: user.role, // Save the role//+
-      }); //+
+        ...user,
+        isAuthenticated: true,
+      });
 
-      // Redirect based on role
       const redirectPath = user.role === "admin" ? "/admin" : "/";
       router.push(redirectPath);
       toast.success("Нэвтрэлт амжилттай!");

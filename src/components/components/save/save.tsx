@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { CiHeart } from "react-icons/ci";
  
@@ -43,7 +44,7 @@ const SaveProductList = () => {
             key={product.id}
             className="flex items-center p-4 border border-gray-200 rounded-lg"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.name}
               className="w-100 h-100 object-cover rounded-lg mr-4"

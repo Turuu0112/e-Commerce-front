@@ -73,10 +73,16 @@ export const UserHistory = () => {
             </div>
 
             <div className="">
-              {list.map((item) => (
-                <div className="flex items-center gap-4  justify-between py-4">
+              {list.map((item, index) => (
+                <div className="flex items-center gap-4 justify-between py-4" key={index}>
                   <div className="flex gap-2">
-                    <Image src={item.image} width={50} height={50} alt="img" />
+                    <Image
+                      src={item.image}
+                      width={50}
+                      height={50}
+                      alt="img"
+                      key={index}
+                    />
                     <div className="flex flex-col">
                       <h1>{item.name}</h1>
                       <p>

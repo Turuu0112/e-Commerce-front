@@ -1,8 +1,6 @@
-"use client"
+"use client";
 import { Login } from "./Login";
 
-export default function(){
-  return(
-    <Login/>
-  )
+export default function Home() {
+  return <Login />;
 }
