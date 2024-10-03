@@ -99,7 +99,7 @@ const product = [
 
 export const Products = () => {
   return (
-    <div className="w-screen h-full px-[200px] mt-10 ">
+    <div className="w-full h-full px-[200px] mt-10 ">
       <div className="grid grid-cols-4 grid-rows-5  gap-5 [&>div:nth-child(7)]:col-span-2  [&>div:nth-child(8)]:col-span-2 ">
         {product.map((p, index) => (
           <div key={index} className="h-full w-full ">

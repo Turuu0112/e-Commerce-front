@@ -1,4 +1,4 @@
-import { CheckboxIcon } from "@radix-ui/react-icons";
+
 
 const Products = [
   {

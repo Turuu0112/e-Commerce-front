@@ -1,17 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import { CiHeart } from "react-icons/ci";
- 
-// Define the Product type
+
 type Product = {
   id: number;
   name: string;
   price: number;
   image: string;
 };
- 
+
 const SaveProductList = () => {
-  // Define the product data inside the component
   const products: Product[] = [
     {
       id: 1,
@@ -32,7 +30,7 @@ const SaveProductList = () => {
       image: "/save3.png",
     },
   ];
- 
+
   return (
     <div className=" w-[800px] h-[600px] mx-auto   ">
       <h2 className="text-2xl font-bold  mb-5 flex flex-col">
@@ -47,6 +45,8 @@ const SaveProductList = () => {
             <Image
               src={product.image}
               alt={product.name}
+              width={24}
+              height={30}
               className="w-100 h-100 object-cover rounded-lg mr-4"
             />
             <div className="flex-1">
@@ -63,6 +63,5 @@ const SaveProductList = () => {
     </div>
   );
 };
- 
+
 export default SaveProductList;
- 
