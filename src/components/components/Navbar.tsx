@@ -4,6 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { CiUser } from "react-icons/ci";
+import { useState } from "react";
 
 export const Navbar = () => {
   return (

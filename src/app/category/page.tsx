@@ -1,22 +1,10 @@
 import { Cates } from "@/components/components/cates";
-
-import { Categor, Category } from "./category";
-const Product = [
-  {
-    title: "Hat",
-  },
-];
+import Product from "./category";
 
 export default function Categories() {
   return (
     <div>
-      <div className="flex mt-[52px]">
-        <div>
-          <Category />
-          <Categor />
-        </div>
-        <Cates />
-      </div>
+      <Product />
     </div>
   );
 }

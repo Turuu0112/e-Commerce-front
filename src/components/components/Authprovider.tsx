@@ -152,7 +152,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     if (!authPaths.includes(pathname)) return;
 
     if (!isReady) return;
-
+    
     if (!user) router.replace("/login");
   }, [pathname, user, isReady, router]);
 

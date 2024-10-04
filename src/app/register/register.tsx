@@ -3,7 +3,8 @@
 import { useAuth } from "@/components/components/Authprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState } from "react";
+import { useState } from "react"
+import { toast } from "react-toastify";
 
 export const Register = () => {
   const [name, setName] = useState("");
