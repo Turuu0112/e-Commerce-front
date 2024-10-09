@@ -104,6 +104,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       localStorage.removeItem("token");
       setUser({} as User);
       toast.success(res.data.message);
+      router.push("/login");
     } catch (err: unknown) {
       console.log(err);
       if (err instanceof AxiosError) {
@@ -152,7 +153,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     if (!authPaths.includes(pathname)) return;
 
     if (!isReady) return;
-    
+
     if (!user) router.replace("/login");
   }, [pathname, user, isReady, router]);
 

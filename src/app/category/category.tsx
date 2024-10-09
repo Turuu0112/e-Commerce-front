@@ -68,7 +68,7 @@ const Product = () => {
 
   const getProducts = async () => {
     try {
-      const response = await api.get("/getProducts");
+      const response = await api.get("/getProducts/getProducts");
       setProducts(response.data as ProductType[]);
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
@@ -82,8 +82,6 @@ const Product = () => {
   useEffect(() => {
     getProducts();
   }, []);
-
-  // Filter products based on selected categories and sizes
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
       selectedCategories.length === 0 ||
