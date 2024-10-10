@@ -26,7 +26,7 @@ const UserInfo = () => {
 
   return (
     <div className="flex justify-center bg-[#F7F7F8] w-full ">
-      <div className="container justify-center h-screen flex gap-5 my-32 ">
+      <div className="w-full justify-center  flex gap-5  ">
         <div className="grid flex-1 h-fit">
           {paths.map((path, index) => (
             <Link key={index} href={path.path}>

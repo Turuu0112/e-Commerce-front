@@ -25,7 +25,7 @@ export const Navbar = () => {
         <input
           type="search"
           placeholder="Бүтээгдэхүүн хайх"
-          className="border rounded p-1 w-[300px] h-[40px]"
+          className="border rounded p-2 w-[300px] h-[40px]"
         ></input>
       </div>
 

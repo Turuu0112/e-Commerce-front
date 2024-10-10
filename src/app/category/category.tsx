@@ -68,7 +68,7 @@ const Product = () => {
 
   const getProducts = async () => {
     try {
-      const response = await api.get("/getProducts/getProducts");
+      const response = await api.get("/products/getProducts");
       setProducts(response.data as ProductType[]);
     } catch (err: unknown) {
       if (err instanceof AxiosError) {

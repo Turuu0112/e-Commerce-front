@@ -97,6 +97,8 @@ const product = [
   },
 ];
 
+
+
 export const Products = () => {
   return (
     <div className="w-full h-full px-[200px] mt-10 ">
@@ -120,19 +122,21 @@ type Prductcardprops = {
   price: string;
   image: string;
 };
-const Productcard = ({ description, price, image }: Prductcardprops) => {
+export const Productcard = ({ description, price, image }: Prductcardprops) => {
   return (
     <Link href="/details">
       <div className="h-full w-full ">
-        <div className="absolute p-3 ">
-          <CiHeart size={24} />
+        <div
+          className="absolute p-3 overflow-hidden rounded-2xl  "
+        >
+          <CiHeart size={24}  />
         </div>
         <Image
           src={image}
           alt={description}
           width={400}
           height={500}
-          className="object-cover rounded-2xl "
+          className="object-cover  rounded-lg overflow-hidden   "
         />
         <h1>{description}</h1>
         <h1>{price}</h1>

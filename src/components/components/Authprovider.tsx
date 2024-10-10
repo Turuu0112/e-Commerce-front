@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
 interface AuthUser {
   user: User | null;
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
   const forgotPassword = async (email: string) => {
     try {
-      const res = await api.post("/auth/forgot-password", { email });
+      const res = await api.post("/auth/forgot.password", { email });
       toast.success(res.data.message);
     } catch (err: unknown) {
       console.log(err);
