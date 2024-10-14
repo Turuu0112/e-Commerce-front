@@ -85,12 +85,6 @@ export default function Details() {
           </div>
         </div>
       </div>
-      <div className=" gap-1 pt-[95.5px]    ">
-        {Smallimg.map((slide, index) => (
-          <RecommendedProduct key={index} image={slide.image} />
-        ))}
-      </div>
-      
     </div>
   );
 }
@@ -109,13 +103,6 @@ const Zurag = ({ image }: Detailsprops) => {
         height={100}
         className="object-fit rounded"
       />
-    </div>
-  );
-};
-const RecommendedProduct = ({ image }: Detailsprops) => {
-  return (
-    <div>
-      <Products/>
     </div>
   );
 };
