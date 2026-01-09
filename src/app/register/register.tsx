@@ -3,7 +3,7 @@
 import { useAuth } from "@/components/components/Authprovider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState } from "react"
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 export const Register = () => {
@@ -20,6 +20,9 @@ export const Register = () => {
     hasSpecialChar: false,
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const validatePassword = (password: string) => {
     setPasswordChecks({
       hasUppercase: /[A-Z]/.test(password),
@@ -29,7 +32,7 @@ export const Register = () => {
     });
   };
 
-  const handlePasswordChange = (e: { target: { value: any } }) => {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     validatePassword(newPassword);
@@ -49,6 +52,7 @@ export const Register = () => {
         <div className="text-center">
           <h1>Бүртгүүлэх</h1>
         </div>
+
         <div className="flex flex-col">
           <input
             type="text"
@@ -57,6 +61,7 @@ export const Register = () => {
             placeholder="Нэр"
             className="border w-[334px] h-[36px] rounded-full p-2 mt-6"
           />
+
           <input
             type="email"
             value={email}
@@ -64,51 +69,60 @@ export const Register = () => {
             placeholder="Имэйл хаяг"
             className="border w-[334px] h-[36px] rounded-full p-2 mt-6"
           />
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Нууц үг"
-            className="border w-[334px] h-[36px] rounded-full p-2 mt-6"
-          />
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Нууц үг давтах"
-            className="border w-[334px] h-[36px] rounded-full p-2 mt-6"
-          />
+
+          {/* Password Input */}
+          <div className="relative mt-6">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Нууц үг"
+              className="border w-[334px] h-[36px] rounded-full p-2 pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-2 text-gray-500"
+            >
+              {showPassword ? "👁️" : "🙈"}
+            </button>
+          </div>
+
+          {/* Confirm Password Input */}
+          <div className="relative mt-6">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Нууц үг давтах"
+              className="border w-[334px] h-[36px] rounded-full p-2 pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3 top-2 text-gray-500"
+            >
+              {showConfirmPassword ? "👁️" : "🙈"}
+            </button>
+          </div>
         </div>
+
+        {/* Password validation list */}
         <div className="flex flex-col gap-2 mt-4 text-gray-500">
-          <li
-            className={
-              passwordChecks.hasUppercase ? "text-green-500" : "text-red-500"
-            }
-          >
+          <li className={passwordChecks.hasUppercase ? "text-green-500" : "text-red-500"}>
             Том үсэг орсон байх
           </li>
-          <li
-            className={
-              passwordChecks.hasLowercase ? "text-green-500" : "text-red-500"
-            }
-          >
+          <li className={passwordChecks.hasLowercase ? "text-green-500" : "text-red-500"}>
             Жижиг үсэг орсон байх
           </li>
-          <li
-            className={
-              passwordChecks.hasNumber ? "text-green-500" : "text-red-500"
-            }
-          >
+          <li className={passwordChecks.hasNumber ? "text-green-500" : "text-red-500"}>
             Тоо орсон байх
           </li>
-          <li
-            className={
-              passwordChecks.hasSpecialChar ? "text-green-500" : "text-red-500"
-            }
-          >
+          <li className={passwordChecks.hasSpecialChar ? "text-green-500" : "text-red-500"}>
             Тэмдэгт орсон байх
           </li>
         </div>
+
         <div className="flex flex-col gap-12 mt-4">
           <Button
             type="submit"

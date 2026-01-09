@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Heart } from "lucide-react";
 
 interface ProductType {
   _id: string;
